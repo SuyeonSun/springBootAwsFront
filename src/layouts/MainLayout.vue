@@ -1,3 +1,15 @@
+<script setup>
+import { ref } from 'vue'
+import {useRouter} from "vue-router";
+
+const drawer = ref(false);
+
+const $router = useRouter();
+const movePage = (path) => {
+  $router.push(path);
+}
+</script>
+
 <template>
   <div class="q-pa-md">
     <q-layout view="lHh Lpr lff" container style="height: 100vh" class="shadow-2 rounded-borders">
@@ -16,23 +28,23 @@
       >
         <q-scroll-area style="height: calc(100% - 150px); margin-top: 150px; border-right: 1px solid #ddd">
           <q-list padding>
-            <q-item clickable v-ripple>
-              <q-item-section avatar>
-                <q-icon name="inbox" />
-              </q-item-section>
-
-              <q-item-section>
-                Inbox
-              </q-item-section>
-            </q-item>
-
-            <q-item clickable v-ripple>
+            <q-item clickable v-ripple @click="movePage('/')">
               <q-item-section avatar>
                 <q-icon name="star" />
               </q-item-section>
 
               <q-item-section>
-                Star
+                Main
+              </q-item-section>
+            </q-item>
+
+            <q-item clickable v-ripple @click="movePage('/new')">
+              <q-item-section avatar>
+                <q-icon name="inbox" />
+              </q-item-section>
+
+              <q-item-section>
+                Write
               </q-item-section>
             </q-item>
 
@@ -77,15 +89,3 @@
     </q-layout>
   </div>
 </template>
-
-<script>
-import { ref } from 'vue'
-
-export default {
-  setup () {
-    return {
-      drawer: ref(false)
-    }
-  }
-}
-</script>

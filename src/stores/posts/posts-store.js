@@ -14,6 +14,14 @@ export const usePostsStore = defineStore('postsStore', {
       } catch (error) {
         console.log("error");
       }
+    },
+
+    async savePost(payload) {
+      try {
+        const response = await api.post("/posts/new", payload);
+      } catch (error) {
+        console.log("error");
+      }
     }
   },
 });

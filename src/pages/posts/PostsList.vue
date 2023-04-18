@@ -3,6 +3,9 @@ import {onMounted} from "vue";
 import {usePostsStore} from "stores/posts/posts-store";
 import {storeToRefs} from "pinia/dist/pinia";
 import PostsListItem from "components/posts/PostsListItem";
+import {useRouter} from "vue-router";
+
+const $router = useRouter();
 
 const postsStore = usePostsStore();
 
@@ -11,6 +14,10 @@ const {postsList} = storeToRefs(postsStore);
 onMounted(() => {
   postsStore.getPostsList();
 })
+
+const clickPostsListItem = (postId) => {
+  $router.push(`/post/${postId}`);
+}
 </script>
 
 <template>
@@ -21,7 +28,9 @@ onMounted(() => {
     <div v-else v-for="(post, idx) in postsList" v-bind:key="idx">
       <posts-list-item :title="post.title"
                        :createdDate="post.createdDate"
-                       :modifiedDate="post.modifiedDate">
+                       :modifiedDate="post.modifiedDate"
+                       @click="clickPostsListItem(post.id)"
+      >
       </posts-list-item>
     </div>
   </q-page>

@@ -18,6 +18,11 @@ const {id, author, title, content} = storeToRefs(postsStore);
 const clickModifyBtn = () => {
   $router.push(`/modify/${id.value}`);
 }
+
+const clickDeleteBtn = async () => {
+  await postsStore.deletePost($route.params.id);
+  $router.push(`/`);
+}
 </script>
 
 <template>
@@ -45,11 +50,16 @@ const clickModifyBtn = () => {
 
       <div class="row justify-end">
         <q-btn
-          type="submit"
           label="수정"
-          class="q-mt-md"
+          class="q-mt-md q-mr-xs"
           color="teal"
           @click="clickModifyBtn"
+        />
+        <q-btn
+          label="삭제"
+          class="q-mt-md"
+          color="teal"
+          @click="clickDeleteBtn"
         />
       </div>
     </div>

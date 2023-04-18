@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia';
+import {defineStore} from 'pinia';
 import {api} from "boot/axios";
 
 export const usePostsStore = defineStore('postsStore', {
@@ -46,6 +46,14 @@ export const usePostsStore = defineStore('postsStore', {
           title: payload.title,
           content: payload.content
         });
+      } catch (error) {
+        console.log("error");
+      }
+    },
+
+    async deletePost(payload) {
+      try {
+        const response = await api.delete(`/posts/${payload}`);
       } catch (error) {
         console.log("error");
       }

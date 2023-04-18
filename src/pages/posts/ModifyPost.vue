@@ -9,14 +9,25 @@ const $route = useRoute();
 
 const postsStore = usePostsStore();
 
-onMounted(() => {
-  postsStore.getPost($route.params.id);
-})
-
 const {id, author, title, content} = storeToRefs(postsStore);
 
-const clickModifyBtn = () => {
-  $router.push(`/modify/${id.value}`);
+const modifiedContent = ref(undefined);
+const modifiedTitle = ref(undefined);
+
+onMounted(async () => {
+  await postsStore.getPost($route.params.id);
+  modifiedTitle.value = title.value;
+  modifiedContent.value = content.value;
+})
+
+const clickSaveBtn = async () => {
+  const payload = {
+    id: id.value,
+    title: modifiedTitle.value,
+    content: modifiedContent.value
+  }
+  await postsStore.modifyPost(payload);
+  $router.push(`/post/${id.value}`);
 }
 </script>
 
@@ -30,26 +41,25 @@ const clickModifyBtn = () => {
 
       <div>
         <div>제목</div>
-        <q-input outlined v-model="title" dense disable/>
+        <q-input outlined v-model="modifiedTitle" dense/>
       </div>
 
       <div>
         <div>내용</div>
         <q-input
           outlined
-          v-model="content"
+          v-model="modifiedContent"
           type="textarea"
-          disable
         />
       </div>
 
       <div class="row justify-end">
         <q-btn
           type="submit"
-          label="수정"
+          label="저장"
           class="q-mt-md"
           color="teal"
-          @click="clickModifyBtn"
+          @click="clickSaveBtn"
         />
       </div>
     </div>

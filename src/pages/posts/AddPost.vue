@@ -47,7 +47,7 @@ const clickSubmitBtn = async () => {
       <div class="row justify-end">
         <q-btn
           type="submit"
-          label="Save"
+          label="저장"
           class="q-mt-md"
           color="teal"
           @click="clickSubmitBtn"

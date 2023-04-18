@@ -7,6 +7,7 @@ const routes = [
       { path: '', component: () => import('pages/posts/PostsList.vue') },
       { path: '/new', component: () => import('pages/posts/AddPost.vue') },
       { path: '/post/:id', component: () => import('pages/posts/PostDetail.vue') },
+      { path: '/modify/:id', component: () => import('pages/posts/ModifyPost.vue') },
     ]
   },
 

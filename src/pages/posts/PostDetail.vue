@@ -28,38 +28,33 @@ const clickDeleteBtn = async () => {
 <template>
   <q-page>
     <div class="column">
-      <div>
-        <div>작성자</div>
-        <q-input outlined v-model="author" dense disable/>
+      <div class="row items-center">
+        <q-icon name="face" size="sm"/>
+        <div class="text-body1 q-ma-none q-pl-sm">{{author}}</div>
       </div>
 
-      <div>
-        <div>제목</div>
-        <q-input outlined v-model="title" dense disable/>
+      <div class="row items-center q-mt-sm">
+        <q-icon name="tag" size="sm"/>
+        <div class="text-body1 q-ma-none q-pl-sm">{{title}}</div>
       </div>
 
-      <div>
-        <div>내용</div>
-        <q-input
-          outlined
-          v-model="content"
-          type="textarea"
-          disable
-        />
+      <div class="row items-center q-mt-sm">
+        <q-icon name="draw" size="sm"/>
+        <div class="text-body1 q-ma-none q-pl-sm">{{content}}</div>
       </div>
 
       <div class="row justify-end">
         <q-btn
-          label="수정"
-          class="q-mt-md q-mr-xs"
-          color="teal"
           @click="clickModifyBtn"
+          flat
+          icon="auto_fix_normal"
+          class="q-mt-sm q-pa-none"
         />
         <q-btn
-          label="삭제"
-          class="q-mt-md"
-          color="teal"
           @click="clickDeleteBtn"
+          flat
+          icon="delete"
+          class="q-mt-sm q-pa-none q-ml-sm"
         />
       </div>
     </div>

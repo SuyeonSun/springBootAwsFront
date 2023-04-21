@@ -35,7 +35,7 @@ const movePage = (path) => {
 
             <q-item clickable v-ripple @click="movePage('/new')">
               <q-item-section avatar>
-                <q-icon name="send" />
+                <q-icon name="post_add" />
               </q-item-section>
             </q-item>
           </q-list>

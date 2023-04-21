@@ -35,31 +35,35 @@ const clickSaveBtn = async () => {
   <q-page>
     <div class="column">
       <div>
-        <div>작성자</div>
-        <q-input outlined v-model="author" dense disable/>
+        <q-input color="white" filled v-model="author" disable>
+          <template v-slot:prepend>
+            <q-icon name="face"/>
+          </template>
+        </q-input>
       </div>
 
-      <div>
-        <div>제목</div>
-        <q-input outlined v-model="modifiedTitle" dense/>
+      <div class="q-mt-md">
+        <q-input color="white" filled v-model="modifiedTitle">
+          <template v-slot:prepend>
+            <q-icon name="tag"/>
+          </template>
+        </q-input>
       </div>
 
-      <div>
-        <div>내용</div>
-        <q-input
-          outlined
-          v-model="modifiedContent"
-          type="textarea"
-        />
+      <div class="q-mt-md">
+        <q-input color="white" filled v-model="modifiedContent" type="textarea">
+          <template v-slot:prepend>
+            <q-icon name="draw"/>
+          </template>
+        </q-input>
       </div>
 
       <div class="row justify-end">
         <q-btn
-          type="submit"
-          label="저장"
-          class="q-mt-md"
-          color="teal"
           @click="clickSaveBtn"
+          flat
+          icon="send"
+          class="q-mt-sm q-pa-none"
         />
       </div>
     </div>
